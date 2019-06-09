@@ -110,6 +110,7 @@ class App:
             )
             self.vertexes.add(v, t)
             index = self.vertexes.getAmount() - 1
+            self.lines.initIndex(index)
 
             self.canvas.tag_bind(v, '<Button-1>', lambda _: self.vertexClick(index))
             self.canvas.tag_bind(t, '<Button-1>', lambda _: self.vertexClick(index))

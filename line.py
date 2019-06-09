@@ -25,8 +25,11 @@ class LineList:
         self.lines[str(v1)].append( Line(v1, v2, lid) )
         self.lines[str(v2)].append( self.lines[str(v1)][-1] )
     
+    def initIndex(self, index):
+        self.lines[str(index)] = []
+    
     def has(self, index):
-        return ( (str(index) in self.lines) and (len(self.lines[str(index)]) > 0) )
+        return ( (str(index) in self.lines) )
     
     def getLines(self, index):
         return self.lines[str(index)]
@@ -37,9 +40,9 @@ class LineList:
         for line in tmp_lines:
             result.append(line.getLineId())
             self.deleteById(line.getLineId())
-
-        #for i in range(v, len(self.lines)-1):
-        #    self.lines[str(i)] = self.lines[str(i+1)].copy()
+        
+        for i in range(v, len(self.lines)-1):
+            self.lines[str(i)], self.lines[str(i+1)] = self.lines[str(i+1)].copy(), self.lines[str(i)].copy()
         #self.lines[str(len(self.lines)-1)] = []
 
         # Update vertexes's index
