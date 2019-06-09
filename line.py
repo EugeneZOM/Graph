@@ -26,7 +26,7 @@ class LineList:
         self.lines[str(v2)].append( self.lines[str(v1)][-1] )
     
     def has(self, index):
-        return ( (str(index) in self.lines) and (len(self.lines) > 0) )
+        return ( (str(index) in self.lines) and (len(self.lines[str(index)]) > 0) )
     
     def getLines(self, index):
         return self.lines[str(index)]
@@ -38,10 +38,11 @@ class LineList:
             result.append(line.getLineId())
             self.deleteById(line.getLineId())
 
-        for i in range(v, len(self.lines)-1):
-            self.lines[str(i)] = self.lines[str(i+1)].copy()
-        self.lines[str(len(self.lines)-1)] = []
+        #for i in range(v, len(self.lines)-1):
+        #    self.lines[str(i)] = self.lines[str(i+1)].copy()
+        #self.lines[str(len(self.lines)-1)] = []
 
+        # Update vertexes's index
         changedLines = []
         for vindex in self.lines.values():
             for l in vindex:
